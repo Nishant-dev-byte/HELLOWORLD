@@ -116,7 +116,7 @@
                 await signInWithEmailAndPassword(auth, email, password);
                 showSuccess('Logged in successfully!');
                 // Redirect to home page or perform other actions
-                setTimeout(() => window.location.href = '/home.html', 1000);
+                setTimeout(() => window.location.href = './home.html', 1000);
             } catch (error) {
                 showError(error.message);
             }
@@ -129,7 +129,7 @@
                 await createUserWithEmailAndPassword(auth, email, password);
                 showSuccess('Account created successfully!');
                 // Redirect to home page or perform other actions
-                setTimeout(() => window.location.href = '/home.html', 1000);
+                setTimeout(() => window.location.href = './home.html', 1000);
             } catch (error) {
                 showError(error.message);
             }
