@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f3e5f5; /* Light purple background */
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 50px; /* Space below title */
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* More rounded to match screenshot */
+            background-color: #ffffff;
+            color: #333;
+            transition: background-color 0.3s;
+            width: 200px; /* Fixed width for buttons */
+        }
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        #video-container {
+            margin-top: 20px;
+            display: none;
+        }
+        #video {
+            width: 640px;
+            height: 480px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #selected-file {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <div class="button-container">
+        <button id="open-camera">Open Camera</button>
+        <button id="upload-footage">Upload Footage</button>
+    </div>
+    <div id="video-container">
+        <video id="video" autoplay></video>
+        <button id="close-camera">Close Camera</button>
+    </div>
+    <p id="selected-file"></p>
+    <input type="file" id="file-input" style="display: none;" accept="video/*">
+
+    <script>
+        const openCameraBtn = document.getElementById('open-camera');
+        const closeCameraBtn = document.getElementById('close-camera');
+        const uploadFootageBtn = document.getElementById('upload-footage');
+        const fileInput = document.getElementById('file-input');
+        const video = document.getElementById('video');
+        const videoContainer = document.getElementById('video-container');
+        const selectedFileP = document.getElementById('selected-file');
+
+        let stream = null;
+
+        openCameraBtn.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                videoContainer.style.display = 'block';
+            } catch (error) {
+                alert('Error accessing camera: ' + error.message);
+            }
+        });
+
+        closeCameraBtn.addEventListener('click', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            video.srcObject = null;
+            videoContainer.style.display = 'none';
+        });
+
+        uploadFootageBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFileP.textContent = `Selected file: ${file.name}`;
+                // You can add further processing here, like uploading to a server or previewing the video
+            }
+        });
+        
+    </script>
+</body>
+</html>
