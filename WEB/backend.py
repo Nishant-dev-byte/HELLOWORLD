@@ -258,7 +258,7 @@ def process_video(file_path):
             processor.log_records.append(processor.current_record)
             save_json(OUTPUT_JSON, processor.log_records)
 
-latest_sitrep = ""  # Global variable to store the latest SITREP
+latest_sitrep = ""  #Globalvar to store latest SITREP
 
 # Function to generate SITREP using OpenRouter
 def generate_sitrep(json_path):
@@ -313,24 +313,24 @@ Command & Signal: {{command_signal}}
         except requests.exceptions.RequestException as e:
             print(f"Request error (attempt {attempt+1}): {e}")
             return f"Request error: {str(e)}"
-        except ValueError as e:  # JSON decode error
+        except ValueError as e:  #JSON decoderror
             print(f"JSON decode error (attempt {attempt+1}): {e}")
             return f"JSON decode error: {str(e)}"
         except Exception as e:
             print(f"Unexpected error (attempt {attempt+1}): {e}")
             return f"Unexpected error: {str(e)}"
-        time.sleep(5 * (attempt + 1))  # Exponential backoff
+        time.sleep(5 * (attempt + 1))  #Exponential backoff
     
     return "Error generating SITREP: API may be overloaded or unavailable."
 
 # Periodic SITREP generator
 def generate_periodic_sitrep():
     global latest_sitrep
-    sitrep_interval = 300  # 5 minutes in seconds
+    sitrep_interval = 300  #5 min in sec
     last_sitrep_time = time.time()
     retries = 3
     while True:
-        time.sleep(60)  # Check every minute
+        time.sleep(60)  #check every min
         if time.time() - last_sitrep_time > sitrep_interval:
             last_sitrep_time = time.time()
             log_records = load_json(OUTPUT_JSON)
@@ -374,10 +374,10 @@ def generate_periodic_sitrep():
                             "X-Title": "<YOUR_SITE_NAME>",
                         },
                         data=json.dumps({
-                            "model": "google/gemma-3n-e4b-it:free",
+                            "model": "google/gemini-2.0-flash-exp:free",
                             "messages": [{"role": "user", "content": sitrep_prompt}]
                         }),
-                        timeout=30  # Add timeout to prevent hanging
+                        timeout=30  #add timeout to prevent hanging
                     )
                     response_json = response.json()
                     if response.status_code == 200:
@@ -412,7 +412,7 @@ def generate_periodic_sitrep():
             if not success:
                 latest_sitrep = "Error generating SITREP: API may be overloaded or unavailable."
 
-# Flask app
+# Flask aap
 app = Flask(__name__)
 UPLOAD_FOLDER = '/tmp'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -475,3 +475,4 @@ if __name__ == '__main__':
     threading.Thread(target=generate_periodic_sitrep, daemon=True).start()
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     app.run(debug=True, port=5000)
+#   app.run(0.0.0.0, debug=True, port=5000) agar app yeh apne phone mein chaloge toh comment out kro
