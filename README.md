@@ -37,5 +37,16 @@ Currently, Situational Reports (SITREPs) are created manually, either written or
 ### Setup Instructions
 1. Clone the repository:  
    ```bash
-   git clone [repository link]
-   cd [project folder]
+   git clone https://github.com/Nishant-dev-byte/HELLOWORLD.git
+   cd HELLOWORLD
+   install all required python libraries
+
+   python backend.py
+
+   use go live extension in vs code
+   go live in loginpage.html 
+
+   enter id = abc@gdg.com
+   enter password =111222
+
+   now you can run the web app
