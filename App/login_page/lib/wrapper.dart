@@ -6,7 +6,7 @@ import 'homepage.dart'; // This defines Homepage
 import 'login.dart';    // This defines Login
 
 class Wrapper extends StatefulWidget {
-  const Wrapper({Key? key}) : super(key: key);
+  const Wrapper({super.key});
 
   @override
   State<Wrapper> createState() => _WrapperState();
