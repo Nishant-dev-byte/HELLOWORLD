@@ -25,10 +25,13 @@ Currently, Situational Reports (SITREPs) are created manually, either written or
 - **Other Tools/Technologies: Ollama, Gemma, Json** 
 
 ## How to Run the Project
-### Prerequisites
+### Prerequisites (Web)
 - python should be installed
-- python libraries OpenCV-python, mediapipe, Ultralytics, Numpy,Torch, Flask, Streamlit.
-- 
+- python libraries OpenCV-python, mediapipe, Ultralytics, Numpy,Torch, Flask, Streamlit, os, json, cv2, pathlib, threading, queue, torchvision 
+
+### Prerequisites (App)
+- flutter sdk
+- Visual Studio Code
 
 
 ### Setup Instructions
