@@ -33,6 +33,14 @@ Currently, Situational Reports (SITREPs) are created manually, either written or
 - flutter sdk
 - Visual Studio Code
 
+### quick checklist agr phone mein clana hai
+- Edit backend.py → app.run(host='0.0.0.0', port=5000).
+- Start python backend.py.
+- On computer run ipconfig/ifconfig → copy LAN IP (say 192.168.1.42).
+- In homepage.dart set _baseUrl = 'http://192.168.1.42:5000'.
+- Ensure firewall allows port 5000.
+- Put phone on same Wi-Fi and open http://192.168.1.42:5000/get_sitrep in mobile browser to test.
+- Run the Flutter app on the phone — try upload a small video. (phone mein vidio ka size zyada hota hai toh km he bnana)
 
 ### Setup Instructions
 1. Clone the repository:  
