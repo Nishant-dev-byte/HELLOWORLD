@@ -41,10 +41,10 @@ Currently, Situational Reports (SITREPs) are created manually, either written or
    cd HELLOWORLD
    install all required python libraries
 
-   python backend.py
+   python backend.py in terminal
 
-   use go live extension in vs code
-   go live in loginpage.html 
+   install live-server extension in vs code
+   use go live in loginpage.html 
 
    enter id = abc@gdg.com
    enter password =111222
