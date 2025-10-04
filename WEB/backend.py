@@ -290,7 +290,7 @@ Command & Signal: {{command_signal}}
                     "X-Title": "<YOUR_SITE_NAME>",
                 },
                 data=json.dumps({
-                    "model": "google/gemini-2.0-flash-exp",
+                    "model": "google/gemini-2.0-flash-exp:free",
                     "messages": [{"role": "user", "content": prompt}]
                 }),
                 timeout=30
